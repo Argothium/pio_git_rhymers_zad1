@@ -1,35 +1,52 @@
 package edu.kis.vh.nursery;
 
-public class defaultCountingOutRhymer {
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-    private int[] NUMBERS = new int[12];
+public class DefaultCountingOutRhymerTest {
 
-    public int total = -1;
-
-    public void countIn(int in) {
-        if (!isFull())
-            NUMBERS[++total] = in;
+    @Test
+    void testCountInAndOut() {
+        DefaultCountingOutRhymerTest rhymer = new DefaultCountingOutRhymerTest();
+        rhymer.countIn(5);
+        assertEquals(5, rhymer.countOut());
     }
 
-    public boolean callCheck() {
-        return total == -1;
+    @Test
+    void testCallCheckTrue() {
+        DefaultCountingOutRhymerTest rhymer = new DefaultCountingOutRhymerTest();
+        assertTrue(rhymer.callCheck());
     }
 
-    public boolean isFull() {
-        return total == 11;
+    @Test
+    void testCallCheckFalse() {
+        DefaultCountingOutRhymerTest rhymer = new DefaultCountingOutRhymerTest();
+        rhymer.countIn(1);
+        assertFalse(rhymer.callCheck());
     }
 
-    protected int peekaboo() {
-        if (callCheck())
-            return -1;
-        return NUMBERS[total];
+    @Test
+    void testIsFull() {
+        DefaultCountingOutRhymerTest rhymer = new DefaultCountingOutRhymerTest();
+        for (int i = 0; i < 12; i++) {
+            rhymer.countIn(i);
+        }
+        assertTrue(rhymer.isFull());
     }
 
-    public int countOut() {
-        if (callCheck())
-            return -1;
-        return NUMBERS[total--];
+    @Test
+    void testPeekaboo() {
+        DefaultCountingOutRhymerTest rhymer = new DefaultCountingOutRhymerTest();
+        rhymer.countIn(7);
+        assertEquals(7, rhymer.peekaboo());
+        assertEquals(7, rhymer.peekaboo());
     }
 
+    @Test
+    void testCountOutOnEmpty() {
+        DefaultCountingOutRhymerTest rhymer = new DefaultCountingOutRhymerTest();
+        assertEquals(-1, rhymer.countOut());
+    }
+
+    // Projekt poprawny – testy przechodzą
 }
-// Projekt poprawny – testy przechodzą

@@ -1,0 +1,20 @@
+# Build directories
+/bin/
+/target/
+
+# IDE settings
+.idea/
+*.iml
+
+# Eclipse
+.settings/
+.classpath
+.project
+
+# OS / temp files
+*.log
+.DS_Store
+Thumbs.db
+
+# Compiled class files
+*.class
